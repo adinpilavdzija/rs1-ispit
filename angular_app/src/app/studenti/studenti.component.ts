@@ -34,4 +34,17 @@ export class StudentiComponent implements OnInit {
     this.testirajWebApi();
   }
 
+  getFiltered() {
+    if (!this.filter_opstina && !this.filter_ime_prezime)
+      this.testirajWebApi();
+    else
+    {
+      this.httpKlijent.get(MojConfig.adresa_servera+ "/Student/GetAll?ime_prezime="+this.ime_prezime, MojConfig.http_opcije()).subscribe(x=>{
+        this.studentPodaci = x;
+
+        if(this.filter_opstina)
+          this.studentPodaci=this.studentPodaci.filter((s:any)=>s.opstina_rodjenja.description.toLowerCase().startsWith(this.opstina.toLowerCase()))
+      });
+    }
+  }
 }

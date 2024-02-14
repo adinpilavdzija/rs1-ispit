@@ -1,12 +1,12 @@
 <p>studenti works!</p>
 
 <div>
-  <input [(ngModel)] = "filter_ime_prezime" type="checkbox"> Filter by <span style="font-weight: bold">Ime / prezime</span> <br>
-  <input [(ngModel)]="ime_prezime"><br>
+  <input [(ngModel)] = "filter_ime_prezime" type="checkbox" (ngModelChange)="getFiltered()"> Filter by <span style="font-weight: bold">Ime / prezime</span> <br>
+  <input [(ngModel)]="ime_prezime" [disabled]="!filter_ime_prezime" (ngModelChange)="getFiltered()"><br>
   <hr>
 
-  <input [(ngModel)] = "filter_opstina" type="checkbox"> Filter by <span style="font-weight: bold">Opština rođenja</span> <br>
-  <input [(ngModel)]="opstina"><br>
+  <input [(ngModel)] = "filter_opstina" type="checkbox" (ngModelChange)="getFiltered()"> Filter by <span style="font-weight: bold">Opština rođenja</span> <br>
+  <input [(ngModel)]="opstina" [disabled]="!filter_opstina" (ngModelChange)="getFiltered()"><br>
   <hr>
 </div>
 <table class="table table-warning">
