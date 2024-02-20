@@ -92,4 +92,8 @@ export class StudentiComponent implements OnInit {
       this.getFiltered();
     });
   }
+
+  gotoMaticna(id:number) {
+    this.router.navigate(['student-maticnaknjiga', id]);
+  }
 }

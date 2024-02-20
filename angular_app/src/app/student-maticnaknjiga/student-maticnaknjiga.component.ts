@@ -12,6 +12,9 @@ declare function porukaError(a: string):any;
   styleUrls: ['./student-maticnaknjiga.component.css']
 })
 export class StudentMaticnaknjigaComponent implements OnInit {
+  showModal: boolean;
+  selectedStudent: any;
+  id: number;
 
   constructor(private httpKlijent: HttpClient, private route: ActivatedRoute) {}
 
@@ -28,5 +31,15 @@ export class StudentMaticnaknjigaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.route.params.subscribe((s:any) => {
+      this.id=+s["id"];
+      this.getStudent();
+    })
+  }
+
+  private getStudent() {
+    this.httpKlijent.get(MojConfig.adresa_servera + "/Student/GetById?id=" + this.id, MojConfig.http_opcije()).subscribe(x=>{
+      this.selectedStudent = x;
+    })
   }
 }
