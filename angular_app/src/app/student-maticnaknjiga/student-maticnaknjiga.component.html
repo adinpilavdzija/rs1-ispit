@@ -59,7 +59,7 @@
   </tbody>
 </table>
 
-<button class="form-label">Upis u zimski semestar</button>
+<button class="form-label" (click)="upisiZimski()">Upis u zimski semestar</button>
 </div>
 
 
@@ -67,40 +67,40 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLiveLabel">Novi semestar za </h5>
-        <button type="button" class="btn-close" aria-label="Close"></button>
+        <h5 class="modal-title" id="exampleModalLiveLabel">Novi semestar za {{selectedStudent.ime}} {{selectedStudent.prezime}}</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="showModal = false"></button>
       </div>
       <div class="modal-body">
         <div class="mb-3">
           <label class="form-label">Datum</label>
-          <input class="form-control" type="date"  placeholder="Datum">
+          <input [(ngModel)]="upisGodine.datumUpisa" class="form-control" type="date"  placeholder="Datum">
         </div>
         <div class="mb-3">
           <label class="form-label">Godina studija</label>
-          <input class="form-control" placeholder="Godina studija"/>
+          <input [(ngModel)]="upisGodine.godinaStudija" type="number" class="form-control" placeholder="Godina studija"/>
         </div>
 
         <div class="mb-3">
           <label class="form-label">Ak godina</label>
-          <select class="form-control" >
-
+          <select class="form-control" [(ngModel)]="upisGodine.akGodinaId">
+            <option *ngFor="let a of akGodine" [value]="a.id">{{a.opis}}</option>
           </select>
         </div>
 
         <div class="mb-3">
           <label class="form-label">Cijena školarine</label>
-          <input class="form-control"  placeholder="Cijena školarine" />
+          <input type="number" class="form-control"  placeholder="Cijena školarine" />
         </div>
 
         <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input"  placeholder="Obnova godine" />
+          <input [(ngModel)]="upisGodine.isObnova" type="checkbox" class="form-check-input"  placeholder="Obnova godine" />
           <label class="form-check-label">Obnova godine</label>
         </div>
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" >Close</button>
-        <button type="button" class="btn btn-primary" >Save changes</button>
+        <button type="button" class="btn btn-secondary" (click)="showModal = false">Close</button>
+        <button type="button" class="btn btn-primary" (click)="saveChanges()">Save changes</button>
       </div>
     </div>
   </div>
