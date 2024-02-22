@@ -18,6 +18,7 @@ export class StudentMaticnaknjigaComponent implements OnInit {
   akGodine: any;
   upisGodine: any;
   upisi: any;
+  showOvjeraModal: boolean;
 
   constructor(private httpKlijent: HttpClient, private route: ActivatedRoute) {}
 
@@ -56,18 +57,25 @@ export class StudentMaticnaknjigaComponent implements OnInit {
   }
 
   saveChanges() {
-    console.log("11111")
     this.httpKlijent.put(MojConfig.adresa_servera + "/MaticnaKnjiga/SaveChanges", this.upisGodine, MojConfig.http_opcije()).subscribe(x => {
       this.getUpisi();
-      console.log("22222")
     });
     this.showModal=false;
-    console.log("3333")
+    this.showOvjeraModal=false;
   }
 
   getUpisi() {
     this.httpKlijent.get(MojConfig.adresa_servera + "/MaticnaKnjiga/GetById?id=" + this.id, MojConfig.http_opcije()).subscribe(x=>{
       this.upisi = x;
     });
+  }
+
+  ovjeriZimski(u: any) {
+    this.upisGodine = {
+      id: u.id,
+      datumOvjere: new Date().toISOString().split('T')[0],
+      ovjeraNapomena: ''
+    }
+    this.showOvjeraModal=true;
   }
 }
