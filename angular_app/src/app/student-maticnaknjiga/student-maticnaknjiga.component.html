@@ -5,21 +5,21 @@
   <div class="mb-3 row">
     <label class="col-sm-2 col-form-label">Student ID</label>
     <div class="col-sm-4">
-      <input  disabled class="form-control" [(ngModel)]="this.selectedStudent.id">
+      <input disabled class="form-control" *ngIf="selectedStudent!=null"  [(ngModel)]="this.selectedStudent.id">
     </div>
   </div>
 
   <div class="mb-3 row">
       <label class="col-sm-2 col-form-label">Student ime</label>
         <div class="col-sm-4">
-      <input disabled class="form-control" [(ngModel)]="this.selectedStudent.ime">
+      <input disabled class="form-control" *ngIf="selectedStudent!=null"  [(ngModel)]="this.selectedStudent.ime">
     </div>
   </div>
 
   <div class="mb-3 row">
       <label class="col-sm-2 col-form-label">Student prezime</label>
         <div class="col-sm-4">
-      <input disabled class="form-control" [(ngModel)]="this.selectedStudent.prezime">
+      <input disabled class="form-control" *ngIf="selectedStudent!=null"  [(ngModel)]="this.selectedStudent.prezime">
     </div>
   </div>
 
@@ -40,17 +40,17 @@
   </thead>
 
   <tbody>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+  <tr *ngFor="let u of upisi">
+    <td>{{u.id}}</td>
+    <td>{{u.akGodina}}</td>
+    <td>{{u.godinaStudija}}</td>
+    <td>{{u.isObnova}}</td>
     <td>
-      <input> |
-      <input>
+      <input [value]="u.datumUpisa" disabled> |
+      <input [value]="u.datumOvjere" disabled>
     </td>
 
-    <td></td>
+    <td>{{u.korisnik}}</td>
     <td>
       <a class="btn btn-link">Ovjeri zimski semestar </a> <br>
 
@@ -59,7 +59,7 @@
   </tbody>
 </table>
 
-<button class="form-label" (click)="upisiZimski()">Upis u zimski semestar</button>
+<button class="form-label" (click)="upisZimski()">Upis u zimski semestar</button>
 </div>
 
 
@@ -89,7 +89,7 @@
 
         <div class="mb-3">
           <label class="form-label">Cijena školarine</label>
-          <input type="number" class="form-control"  placeholder="Cijena školarine" />
+          <input [(ngModel)]="upisGodine.cijenaSkolarine" type="number" class="form-control"  placeholder="Cijena školarine" />
         </div>
 
         <div class="mb-3 form-check">

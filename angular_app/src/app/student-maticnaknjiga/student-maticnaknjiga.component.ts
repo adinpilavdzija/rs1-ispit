@@ -17,20 +17,9 @@ export class StudentMaticnaknjigaComponent implements OnInit {
   id: number;
   akGodine: any;
   upisGodine: any;
+  upisi: any;
 
   constructor(private httpKlijent: HttpClient, private route: ActivatedRoute) {}
-
-  ovjeriLjetni(s:any) {
-
-  }
-
-  upisLjetni(s:any) {
-
-  }
-
-  ovjeriZimski(s:any) {
-
-  }
 
   ngOnInit(): void {
     this.route.params.subscribe((s:any) => {
@@ -38,15 +27,16 @@ export class StudentMaticnaknjigaComponent implements OnInit {
       this.getStudent();
     })
     this.getAkGodine();
+    this.getUpisi();
   }
 
-  private getStudent() {
+  getStudent() {
     this.httpKlijent.get(MojConfig.adresa_servera + "/Student/GetById?id=" + this.id, MojConfig.http_opcije()).subscribe(x=>{
       this.selectedStudent = x;
     })
   }
 
-  upisiZimski() {
+  upisZimski() {
     this.upisGodine = {
       id: 0,
       datumUpisa: '',
@@ -66,8 +56,18 @@ export class StudentMaticnaknjigaComponent implements OnInit {
   }
 
   saveChanges() {
-    this.httpKlijent.put(MojConfig.adresa_servera + "/MaticnaKnjiga/SaveChanges" + this.upisGodine, MojConfig.http_opcije()).subscribe(x=>{
+    console.log("11111")
+    this.httpKlijent.put(MojConfig.adresa_servera + "/MaticnaKnjiga/SaveChanges", this.upisGodine, MojConfig.http_opcije()).subscribe(x => {
+      this.getUpisi();
+      console.log("22222")
     });
-    this.showModal = false;
+    this.showModal=false;
+    console.log("3333")
+  }
+
+  getUpisi() {
+    this.httpKlijent.get(MojConfig.adresa_servera + "/MaticnaKnjiga/GetById?id=" + this.id, MojConfig.http_opcije()).subscribe(x=>{
+      this.upisi = x;
+    });
   }
 }

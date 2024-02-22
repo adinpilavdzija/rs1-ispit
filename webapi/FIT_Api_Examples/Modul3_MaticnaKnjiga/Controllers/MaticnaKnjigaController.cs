@@ -34,8 +34,8 @@ namespace FIT_Api_Examples.Modul2.Controllers
                 return BadRequest("nije logiran");
 
             var response = _dbContext.UpisAkGodina
-                .Where(s => s.studentId == id && !s.student.isDeleted)
-                .Include(s => new UpisAkGodinaVM
+                .Where(x => x.student.id == id && !x.student.isDeleted)
+                .Select(s => new UpisAkGodinaVM
                 {
                     id = s.id,
                     studentId = s.studentId,
