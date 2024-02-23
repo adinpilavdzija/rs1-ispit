@@ -18,12 +18,6 @@ Omogućiti sljedeće opcije samo za logiranog korisnika. Provjeru logiranog kori
 
 Za angular validaciju logina koristite token i *CanActive*-implementacije iz foldera **_guards**.
 
-Nakon svake obavljene operacije ispisati odgovarajuću poruku.
-
-porukaError, porukaSuccess, porukaWarning
-/assets/fit-messagebox.js
-/assets/fit-messagebox.css
-
 ### 1A
 
 Implementirati formu za prikaz studenata sa dva filtera
@@ -41,11 +35,11 @@ Ukoliko checkbox nije označen onda pripadajući textbox i select-combobox mora 
 
 Implementirati opciju za dodavanje i uređivanje podataka o studentu (ime, prezime, opština rođenja) u bootstrap dijalogu. Opštine prikazati u combobox-u.
 
-<!-- Koristiti novu komponentu „edit-student“🔴. -->
-
 **Opcija Dodaj** treba preuzet string iz textboxa pretrage „ah“ i kopirati ga u defaultno ime studenta.
 
-Defaultna vrijednost za opštinu rođenja (kod dodavanja novog studenta) treba da bude opština čiji je id najveća vrijednost.
+Defaultna vrijednost za opštinu rođenja (kod dodavanja novog studenta) treba da bude opština zadnjeg dodanog studenta.
+
+**Opcija Obrisi** treba da radi soft delete, odnosno da "obrisanog" studenta sakrije.
 
 ![1b](https://github.com/adinpilavdzija/rs1-ispit/assets/65655945/3e1043de-5e8c-4b1a-b43b-03835e60ebb8)
 
@@ -57,8 +51,6 @@ Omogućiti sljedeće opcije samo za logiranog korisnika. Provjeru logiranog kori
 
 Za angular validaciju logina koristite token i CanActive-implementacije iz foldera _guards.
 
-Nakon svake obavljene operacije ispisati odgovarajuću poruku.
-
 **Implementirati formu za uređivanje matične knjige studenta, tj. opcije upis godine studija i ovjera semestara.**
 
 ### 2a
@@ -67,16 +59,14 @@ Omogućiti otvaranje komponente prosljeđivanjem parametra **student ID** u url 
 
 ### 2b
 
-Omogućiti dodavanje **nove upisane godine** (potrebna nova entity klasa i migracija za novu tabelu):
-    - datum upisa u zimski semestar: DateTime
-    - godina studija: int
-    - akademska godina: FK na tabelu **AkademskaGodina** (prikazati unutar combobox-a)
-    - cijena školarine: float
-    - obnova: bool
-    - datum ovjere: DateTime
-    - napomena za ovjeru: text
-
-<!-- - Istu godinu studija (npr. godina 1) je moguće upisati samo ako je u pitanju **obnova**.🔴 -->
+Omogućiti dodavanje **nove upisane godine** (potrebna nova entity klasa i migracija za novu tabelu):  
+    - datum upisa u zimski semestar: DateTime  
+    - godina studija: int  
+    - akademska godina: FK na tabelu **AkademskaGodina** (prikazati unutar combobox-a)  
+    - cijena školarine: float  
+    - obnova: bool  
+    - datum ovjere: DateTime  
+    - napomena za ovjeru: text  
 
 ### 2c
 
